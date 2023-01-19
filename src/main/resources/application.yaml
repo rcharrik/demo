@@ -1,0 +1,26 @@
+spring:
+  jmx:
+    enabled: true
+  security:
+    oauth2:
+      resource-server:
+        opaque-token:
+          introspection-uri: https://localhost:9443/oauth2/introspect
+          client-id: admin
+          client-secret: admin
+  application:
+    name: micro-gateway-services-2a93d0ad-7cce-495d-ab29-b8b2e7149126
+  cloud:
+    gateway:
+      default-filters:
+        - AddResponseHeader=X-SOCGEN-GATEWAY, 1
+        - AddResponseHeader=X-SOCGEN-UUID, 2a93d0ad-7cce-495d-ab29-b8b2e7149126
+      routes:
+        - id: _doctor_doctorType_
+          uri: http://localhost:8280/
+          predicates:
+            - Path=/healthcare/1.0.0/doctor/{doctorType}
+          filters:
+            - TokenRelay=
+            - RemoveResponseHeader=X-Forwarded-For=
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
