@@ -5,9 +5,9 @@ spring:
     oauth2:
       resource-server:
         opaque-token:
-          introspection-uri: https://localhost:9443/oauth2/introspect
-          client-id: admin
-          client-secret: admin
+          introspection-uri: ${oAuth2IntrospectionUri}
+          client-id: ${oAuth2ClientId}
+          client-secret: ${oAuth2ClientSecret}
   application:
     name: micro-gateway-services-2a93d0ad-7cce-495d-ab29-b8b2e7149126
   cloud:
