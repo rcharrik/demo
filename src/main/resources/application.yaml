@@ -17,10 +17,11 @@ spring:
         - AddResponseHeader=X-SOCGEN-UUID, 30ce3bf8-8e00-4498-81b9-740d4cb4e3f9
       routes:
         - id: _doctor_doctorType_
-          uri: http://localhost:8080/
+          uri: http://localhost:8280/
           predicates:
             - Path=/doctor/{doctorType}
           filters:
+            - PrefixPath=/healthcare/1.0.0
             - TokenRelay=
             - RemoveResponseHeader=X-Forwarded-For=
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
