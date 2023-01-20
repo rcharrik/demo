@@ -9,17 +9,17 @@ spring:
           client-id: ${oAuth2ClientId}
           client-secret: ${oAuth2ClientSecret}
   application:
-    name: micro-gateway-services-2a93d0ad-7cce-495d-ab29-b8b2e7149126
+    name: micro-gateway-services-30ce3bf8-8e00-4498-81b9-740d4cb4e3f9
   cloud:
     gateway:
       default-filters:
         - AddResponseHeader=X-SOCGEN-GATEWAY, 1
-        - AddResponseHeader=X-SOCGEN-UUID, 2a93d0ad-7cce-495d-ab29-b8b2e7149126
+        - AddResponseHeader=X-SOCGEN-UUID, 30ce3bf8-8e00-4498-81b9-740d4cb4e3f9
       routes:
         - id: _doctor_doctorType_
-          uri: http://localhost:8280/
+          uri: http://localhost:8080/
           predicates:
-            - Path=/healthcare/1.0.0/doctor/{doctorType}
+            - Path=/doctor/{doctorType}
           filters:
             - TokenRelay=
             - RemoveResponseHeader=X-Forwarded-For=

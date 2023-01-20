@@ -14,7 +14,7 @@ public class SecurityConfig {
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) throws Exception {
         http
                 .authorizeExchange()
-                .pathMatchers("/actuator/gateway/routes").hasAuthority("SCOPE_AdminMonitorScope")
+                .pathMatchers("/actuator/**").hasAuthority("SCOPE_AdminMonitorScope")
                 .anyExchange().authenticated()
                 .and()
                 .oauth2ResourceServer().opaqueToken();
